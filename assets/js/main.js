@@ -33,19 +33,7 @@
       nav.addEventListener(evt, (e) => e.stopPropagation(), { passive: true });
     });
 
-    // Close on outside click
-    document.addEventListener('click', (e) => {
-      if (!nav.contains(e.target) && !navToggle.contains(e.target)) closeNav();
-    });
-    // Close on Escape
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape') closeNav();
-    });
-    // Close after tapping a link (mobile UX). Use setTimeout to allow navigation.
-    nav.querySelectorAll('a').forEach((a) => {
-      a.addEventListener('click', () => setTimeout(closeNav, 50));
-      a.addEventListener('touchstart', () => setTimeout(closeNav, 50), { passive: true });
-    });
+    // Do NOT auto-close on outside click or link click; user must toggle with the button.
   }
 
   // Active link highlight when navigating between pages (based on pathname)
