@@ -11,16 +11,26 @@
     };
     ensureNavAtBody();
     window.addEventListener('resize', ensureNavAtBody);
+
+    // Create a backdrop to detect outside taps reliably on mobile
+    let backdrop = document.querySelector('.nav-backdrop');
+    if (!backdrop) {
+      backdrop = document.createElement('div');
+      backdrop.className = 'nav-backdrop';
+      document.body.appendChild(backdrop);
+    }
     // Keep toggle always visible above nav overlay
     navToggle.style.position = 'relative';
     navToggle.style.zIndex = '3001';
     const openNav = () => {
       nav.classList.add('open');
       navToggle.setAttribute('aria-expanded', 'true');
+      backdrop.classList.add('open');
     };
     const closeNav = () => {
       nav.classList.remove('open');
       navToggle.setAttribute('aria-expanded', 'false');
+      backdrop.classList.remove('open');
     };
     const toggleNav = (e) => {
       e.stopPropagation();
@@ -31,6 +41,11 @@
     // Use a single click handler to avoid double-toggle on mobile (touchstart + click)
     navToggle.addEventListener('click', toggleNav);
     nav.addEventListener('click', (e) => e.stopPropagation());
+
+    // Close when backdrop is tapped/clicked
+    ['click','touchstart'].forEach((evt) => {
+      backdrop.addEventListener(evt, () => closeNav(), { passive: true });
+    });
 
     // Do NOT auto-close on outside click or link click; user must toggle with the button.
   }

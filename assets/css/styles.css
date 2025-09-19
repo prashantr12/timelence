@@ -200,6 +200,8 @@ a:hover { color: var(--accent); }
   .nav li { position: relative; z-index: 1; }
   .nav a { padding: 16px; background: #0f1422; border: 1px solid #25304a; color: var(--text); display: block; }
   .nav a.active { background: #141b2e; box-shadow: 0 0 0 1px #2a3349 inset; }
+  .nav-backdrop { position: fixed; inset: 56px 0 0 0; background: #00000080; opacity: 0; pointer-events: none; transition: opacity .2s ease; z-index: 4000; }
+  .nav-backdrop.open { opacity: 1; pointer-events: auto; }
 }
 
 /* Reduced motion */
