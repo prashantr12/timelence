@@ -2,6 +2,9 @@
   const navToggle = document.querySelector('.nav-toggle');
   const nav = document.querySelector('#primary-nav');
   if (navToggle && nav) {
+    // Keep toggle always visible above nav overlay
+    navToggle.style.position = 'relative';
+    navToggle.style.zIndex = '3001';
     const openNav = () => {
       nav.classList.add('open');
       navToggle.setAttribute('aria-expanded', 'true');
