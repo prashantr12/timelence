@@ -1,7 +1,16 @@
 (function() {
   const navToggle = document.querySelector('.nav-toggle');
-  const nav = document.querySelector('#primary-nav');
+  let nav = document.querySelector('#primary-nav');
   if (navToggle && nav) {
+    // On small screens, move nav to body to avoid clipping under header stacking contexts
+    const ensureNavAtBody = () => {
+      const isMobile = window.matchMedia('(max-width: 720px)').matches;
+      if (isMobile && nav.parentElement !== document.body) {
+        document.body.appendChild(nav);
+      }
+    };
+    ensureNavAtBody();
+    window.addEventListener('resize', ensureNavAtBody);
     // Keep toggle always visible above nav overlay
     navToggle.style.position = 'relative';
     navToggle.style.zIndex = '3001';
