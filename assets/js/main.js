@@ -41,10 +41,10 @@
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape') closeNav();
     });
-    // Close after tapping a link (mobile UX)
+    // Close after tapping a link (mobile UX). Use setTimeout to allow navigation.
     nav.querySelectorAll('a').forEach((a) => {
-      a.addEventListener('click', () => closeNav());
-      a.addEventListener('touchstart', () => closeNav(), { passive: true });
+      a.addEventListener('click', () => setTimeout(closeNav, 50));
+      a.addEventListener('touchstart', () => setTimeout(closeNav, 50), { passive: true });
     });
   }
 
