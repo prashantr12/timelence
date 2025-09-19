@@ -197,7 +197,8 @@ a:hover { color: var(--accent); }
   .nav { position: fixed; top: 56px; left: 0; right: 0; background: #0a0e18; border-bottom: 1px solid #1b2130; transform: translateY(-150%); transition: transform .25s ease; z-index: 5000; max-height: calc(100vh - 56px); overflow-y: auto; box-shadow: 0 20px 60px #00000066; border-bottom-left-radius: 12px; border-bottom-right-radius: 12px; }
   .nav.open { transform: translateY(0); }
   .nav ul { padding: 12px; gap: 8px; flex-direction: column; }
-  .nav a { padding: 14px; background: #0f1422; border: 1px solid #25304a; color: var(--text); }
+  .nav li { position: relative; z-index: 1; }
+  .nav a { padding: 16px; background: #0f1422; border: 1px solid #25304a; color: var(--text); display: block; }
   .nav a.active { background: #141b2e; box-shadow: 0 0 0 1px #2a3349 inset; }
 }
 

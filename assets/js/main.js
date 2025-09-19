@@ -28,10 +28,9 @@
       if (willOpen) openNav(); else closeNav();
     };
 
-    ['click','touchstart'].forEach((evt) => {
-      navToggle.addEventListener(evt, toggleNav, { passive: true });
-      nav.addEventListener(evt, (e) => e.stopPropagation(), { passive: true });
-    });
+    // Use a single click handler to avoid double-toggle on mobile (touchstart + click)
+    navToggle.addEventListener('click', toggleNav);
+    nav.addEventListener('click', (e) => e.stopPropagation());
 
     // Do NOT auto-close on outside click or link click; user must toggle with the button.
   }
