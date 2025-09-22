@@ -24,33 +24,7 @@
     <link rel="icon" type="image/gif" href="https://track.klerun.com/t.gif?siteKey=15442701ca7a36c65980488ae321ded0&url=">
     <img src="https://track.klerun.com/t.gif?siteKey=15442701ca7a36c65980488ae321ded0" width="1" height="1" alt=""
       style="position:absolute;left:-9999px;" />
-    Edge logging (Next.js middleware.ts)
-    // Next.js (middleware.ts) – logs HTML requests server-side
-    import { NextResponse, type NextRequest } from 'next/server';
-    export const config = { matcher: ['/((?!_next/|api/|favicon.ico|icon.svg).*)'] };
-    export function middleware(req: NextRequest) {
-    const url = req.nextUrl.href;
-    const ua = req.headers.get('user-agent') || '';
-    fetch('https://api.klerun.com/api/log', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json', 'User-Agent': ua },
-    body: JSON.stringify({ url, siteKey: '15442701ca7a36c65980488ae321ded0' })
-    }).catch(()=>{});
-    return NextResponse.next();
-    }
-    Edge logging (Cloudflare Worker)
-    // Cloudflare Worker – logs HTML requests server-side
-    export default {
-    async fetch(req, env, ctx) {
-    const ua = req.headers.get('user-agent') || '';
-    const url = req.url;
-    ctx.waitUntil(fetch('https://api.klerun.com/api/log', {
-    method: 'POST', headers: { 'Content-Type': 'application/json', 'User-Agent': ua },
-    body: JSON.stringify({ url, siteKey: '15442701ca7a36c65980488ae321ded0' })
-    }));
-    return fetch(req);
-    }
-    };
+    
   </head>
   <body>
     <header class="site-header">
